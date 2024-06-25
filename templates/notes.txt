@@ -1,0 +1,3 @@
+html config
+
+store html in templates folder to access by app.py
