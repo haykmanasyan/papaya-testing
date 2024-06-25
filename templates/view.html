@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Papaya Viewer</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='papaya/papaya.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='papaya/papaya.js') }}"></script>
+</head>
+<body>
+    <div class="papaya" data-params="params"></div>
+    <script type="text/javascript">
+        var params = {
+            "files": ["{{ url_for('serve_file', filename=file_name) }}"]
+        };
+        papaya.Container.startPapaya();
+    </script>
+</body>
+</html>
