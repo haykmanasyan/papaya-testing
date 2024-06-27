@@ -6,7 +6,7 @@
     <title>Flask Papaya Viewer</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    
+
     <!-- CSS files -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/base.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/ui/toolbar.css') }}">
@@ -16,10 +16,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/utilities/unsupported.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/viewer/viewer.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='papaya/release/current/minimal/papaya.css') }}">
-    
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
     <!-- Papaya and other JavaScript files -->
     <script type="text/javascript" src="{{ url_for('static', filename='lib/base64-binary.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='lib/bowser.js') }}"></script>
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='lib/gl-matrix.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='lib/gifti-reader.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='lib/GLU.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/constants.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/utilities/array-utils.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/utilities/math-utils.js') }}"></script>
@@ -54,12 +54,12 @@
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/volume/volume.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/volume/voxeldimensions.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/volume/voxelvalue.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/surface/surface.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/surface/surface-gifti.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/surface/surface-mango.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/surface/surface-vtk.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/ui/dialog.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/ui/menu.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/ui/menuitem.js') }}"></script>
@@ -70,7 +70,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/ui/menuitemslider.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/ui/menuitemspacer.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/ui/toolbar.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/viewer/atlas.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/viewer/colortable.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/viewer/display.js') }}"></script>
@@ -79,28 +79,26 @@
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/viewer/screensurface.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/viewer/screenvol.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/viewer/viewer.js') }}"></script>
-    
+
     <script type="text/javascript" src="{{ url_for('static', filename='src/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='papaya/release/current/minimal/papaya.js') }}"></script>
-    
-    <script type="text/javascript">
-        // Add debug statement
-        console.log("Initializing Papaya...");
-
-        var params = [];
-        params["images"] = ["{{ url_for('serve_file', filename=file_name) }}"];
-
-        // Add more debug statements
-        console.log("Papaya params:", params);
-
-        window.onload = function() {
-            console.log("Window loaded, starting Papaya...");
-            papaya.Container.startPapaya();
-            console.log("Papaya started.");
-        };
-    </script>
 </head>
 <body>
     <div class="papaya" data-params="params"></div>
+
+    <script type="text/javascript">
+        console.log("Initializing Papaya...");
+    
+        var params = {
+    images: ["src/BRAIN_1_Anonymized.nii.gz"]  // Relative path from the root where index.html is located
+};
+
+console.log(params)
+        window.onload = function() {
+            console.log("Window loaded, starting Papaya...");
+            papaya.Container.startPapaya(params);
+            console.log("Papaya started.");
+        };
+    </script>
 </body>
 </html>

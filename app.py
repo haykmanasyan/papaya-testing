@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request, url_for, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, url_for
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 @app.route('/')
 def index():
@@ -12,12 +12,9 @@ def index():
 
 @app.route('/view')
 def view():
-    # Get the selected file from the query parameters
-    file_name = request.args.get('file')
+    file_name = request.args.get('filename')  # Adjust to match the name in your form
     if file_name:
-        file_path = os.path.join('src', file_name)
-        if os.path.exists(file_path):
-            return render_template('view.html', file_name=file_name)
+        return render_template('view.html', file_name=file_name)
     return "File not found", 404
 
 @app.route('/src/<filename>')
