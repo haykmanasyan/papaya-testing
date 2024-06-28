@@ -89,12 +89,18 @@
     <script type="text/javascript">
         console.log("Initializing Papaya...");
     
-        var params = [];
-        params ["images"] = ["{{ url_for('serve_file', filename=file_name) }}"];
+        var imageUrl = "{{ url_for('serve_file', filename=file_name) }}";
+        console.log("Generated image URL:", imageUrl);
 
-console.log(params)
+        var params = {
+            images: [imageUrl]
+        };
+
+    console.log(params)
+    
         window.onload = function() {
             console.log("Window loaded, starting Papaya...");
+            console.log(params)
             papaya.Container.startPapaya();
             papaya.Container.resetViewer(0, params);
             console.log("Papaya started.");

@@ -19,7 +19,7 @@ def view():
 
 @app.route('/src/<filename>')
 def serve_file(filename):
-    return send_from_directory('src', filename)
+    return send_from_directory(os.path.join(app.root_path, 'src'), filename)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)
