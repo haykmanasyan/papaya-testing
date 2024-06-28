@@ -89,14 +89,14 @@
     <script type="text/javascript">
         console.log("Initializing Papaya...");
     
-        var params = {
-    images: ["src/BRAIN_1_Anonymized.nii.gz"]  // Relative path from the root where index.html is located
-};
+        var params = [];
+        params ["images"] = ["{{ url_for('serve_file', filename=file_name) }}"];
 
 console.log(params)
         window.onload = function() {
             console.log("Window loaded, starting Papaya...");
-            papaya.Container.startPapaya(params);
+            papaya.Container.startPapaya();
+            papaya.Container.resetViewer(0, params);
             console.log("Papaya started.");
         };
     </script>
