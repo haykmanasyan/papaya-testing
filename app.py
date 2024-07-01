@@ -13,7 +13,7 @@ def index():
 
 @app.route('/view')
 def view():
-    file_name = request.args.get('filename')  # Adjust to match the name in your form
+    file_name = request.args.get('filename')
     if file_name:
         return render_template('view.html', file_name=file_name)
     return "File not found", 404
