@@ -18,7 +18,7 @@ def view():
         return render_template('view.html', file_name=file_name)
     return "File not found", 404
 
-@app.route('/src/<filename>')
+@app.route('/static/papaya/tests/data/<filename>')
 def serve_file(filename):
     # Serve files from the new data directory
     return send_from_directory(os.path.join(app.static_folder, 'papaya/tests/data'), filename)
